@@ -1,0 +1,9 @@
+.vimsession
+.vscode
+/node_modules
+.git
+*.swp
+/public/build
+/tmp
+/garden/build
+/test/test*.csv
