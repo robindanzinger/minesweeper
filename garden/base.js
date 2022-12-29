@@ -26,21 +26,31 @@ export const routes = {
 }
 }
 
-export const navtree = {
-  "custom": {
-    "components": {
-      "_items": [
-        {
-          "href": "/custom/components/board",
-          "text": "Board",
-          "key": "CustomComponentsBoard"
-        },
-        {
-          "href": "/custom/components/field",
-          "text": "Field",
-          "key": "CustomComponentsField"
-        }
-      ]
-    }
+export const navtree = [
+  {
+    "isNode": true,
+    "name": "custom",
+    "key": "/custom/",
+    "children": [
+      {
+        "isNode": true,
+        "name": "components",
+        "key": "/custom/components/",
+        "children": [
+          {
+            "isLeaf": true,
+            "href": "/custom/components/board",
+            "name": "Board",
+            "key": "CustomComponentsBoard"
+          },
+          {
+            "isLeaf": true,
+            "href": "/custom/components/field",
+            "name": "Field",
+            "key": "CustomComponentsField"
+          }
+        ]
+      }
+    ]
   }
-}
+]
