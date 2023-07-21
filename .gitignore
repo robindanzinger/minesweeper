@@ -3,7 +3,9 @@
 /node_modules
 .git
 *.swp
-/public/build
+/public
 /tmp
-/garden/build
+/garden
 /test/test*.csv
+/.garden
+

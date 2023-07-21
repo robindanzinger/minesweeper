@@ -1,7 +1,8 @@
 export default {
   'serverport': 3010,
-  'wssocketport': 3011,
-  'destination': 'garden/',
+  'wssocketport': 3012,
+  'project_title': 'Minesweeper',
+  'destination': '.garden/',
   'structure': {
     'custom': {
       'components': '/src/components/'
@@ -14,5 +15,5 @@ export default {
     'include': [
       '.svelte', '.das.json', '.scss', '.css', '.js'
     ]
-  }
+  },
 }
