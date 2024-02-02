@@ -1,51 +1,54 @@
 <script>
-  import Field from "./field.svelte";
-  import { help, newGame, initFields,
+  import Field from './field.svelte'
+  import {
+    help,
+    newGame,
+    initFields,
     toggleflag,
     uncover,
     getfields,
-  } from "./logic.js";
-  export let columns = 0;
-  export let rows = 0;
+  } from './logic.js'
+  export let columns = 0
+  export let rows = 0
 
   let state = 'play'
-  let fields = [];
+  let fields = []
 
-  $: fields = initFields(columns, rows);
+  $: fields = initFields(columns, rows)
   function handleout(e) {
     if (e.detail.uncover) {
-      state = uncover(e.detail.uncover.row, e.detail.uncover.column);
+      state = uncover(e.detail.uncover.row, e.detail.uncover.column)
     } else if (e.detail.toggleflag) {
-      toggleflag(e.detail.toggleflag.row, e.detail.toggleflag.column);
+      toggleflag(e.detail.toggleflag.row, e.detail.toggleflag.column)
     }
-    fields = getfields();
+    fields = getfields()
   }
 
   function helpme(evt) {
-    state = help();
-    fields = getfields();
+    state = help()
+    fields = getfields()
   }
 
   function newgame() {
-    ({ fields, state } = newGame());
+    ;({ fields, state } = newGame())
   }
 </script>
 
 {#if fields.length > 0}
-<div class="column">
-  {#each {length: rows} as _, row}
-  <div class="row">
-    {#each {length: columns} as _, column}
-    <Field {...fields[row][column]} on:out="{handleout}"></Field>
+  <div class="column">
+    {#each { length: rows } as _, row}
+      <div class="row">
+        {#each { length: columns } as _, column}
+          <Field {...fields[row][column]} on:out={handleout}></Field>
+        {/each}
+      </div>
     {/each}
   </div>
-  {/each}
-</div>
 {/if}
 <div>{state}</div>
 <div class="buttons">
-  <button on:click="{helpme}">help</button>
-  <button on:click="{newgame}">new</button>
+  <button on:click={helpme}>help</button>
+  <button on:click={newgame}>new</button>
 </div>
 
 <style>
