@@ -1,27 +1,20 @@
 {
   "name": "minesweeper",
   "version": "1.0.0",
+  "author": "",
+  "license": "MIT",
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "build": "vite build",
     "dev": "vite",
+    "format": "prettier --write --plugin prettier-plugin-svelte .",
     "garden": "garden",
     "lint": "eslint src/.",
     "prepare": "husky install",
     "preview": "vite preview",
     "test": "vitest"
-  },
-  "author": "",
-  "license": "MIT",
-  "nodemonConfig": {
-    "ignore": [
-      "dev/*",
-      "test/component_app_generator_test_folder/*",
-      "public/*"
-    ],
-    "ext": "svelte,json"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "3.0.2",
@@ -35,5 +28,8 @@
     "prettier-plugin-svelte": "^3.1.2",
     "svelte": "4.2.9",
     "vite": "5.0.12"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   }
 }

@@ -1,9 +1,6 @@
 <script>
   import Field from "./field.svelte";
-  import {
-    help,
-    newGame,
-    initFields,
+  import { help, newGame, initFields,
     toggleflag,
     uncover,
     getfields,
@@ -11,7 +8,7 @@
   export let columns = 0;
   export let rows = 0;
 
-  let state = "play";
+  let state = 'play'
   let fields = [];
 
   $: fields = initFields(columns, rows);
