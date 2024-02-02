@@ -1,4 +1,4 @@
-import SvelteRendererBuilder from "gardenjs/svelte";
+import SvelteRendererBuilder from 'gardenjs/svelte'
 
 export default {
   // Define the server port:
@@ -10,7 +10,7 @@ export default {
   no_open_browser: true,
 
   // This title is displayed above the navigation:
-  project_title: "Minesweeper",
+  project_title: 'Minesweeper',
 
   // Here you can set a path to your own start page:
   // "welcome_page": "/src/custom_welcome_page.Svelte",
@@ -20,12 +20,12 @@ export default {
 
   // Each entry is output with its subpages in the page tree:
   structure: {
-    components: "/src/components",
+    components: '/src/components',
   },
 
   watch: {
-    directories: ["./src/components"],
-    include: [".svelte", ".das.json", ".scss", ".css", ".less", ".js", ".ts"],
+    directories: ['./src/components'],
+    include: ['.svelte', '.das.json', '.scss', '.css', '.less', '.js', '.ts'],
   },
 
   renderer: {
@@ -44,7 +44,7 @@ export default {
   //   {name: 'light', stageBg: '#eee'}
   // ],
   // "themeHandler": onThemeChange
-};
+}
 
 ////  Edit or disable the function "onThemeChange" according to your project (see also "themes" above):
 //function onThemeChange(theme) {

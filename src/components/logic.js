@@ -21,7 +21,7 @@ export function newGame() {
   initFields(columns, rows)
   return {
     fields: getfields(),
-    state: getState()
+    state: getState(),
   }
 }
 
@@ -35,7 +35,7 @@ export function initFields(newColumns, newRows) {
   for (let row = 0; row < rows; row++) {
     fields[row] = [columns]
     for (let column = 0; column < columns; column++) {
-      fields[row][column] = {state: 'covered', row, column}
+      fields[row][column] = { state: 'covered', row, column }
     }
   }
   setBombs()
@@ -49,17 +49,18 @@ export function getState() {
 
 export function getfields() {
   return fields.reduce((acc, cur) => {
-    acc.push(cur.reduce((ac, cr) => {
-     ac.push({...cr})
-     return ac
-    }, []))
+    acc.push(
+      cur.reduce((ac, cr) => {
+        ac.push({ ...cr })
+        return ac
+      }, [])
+    )
     return acc
   }, [])
-
 }
 
 function setBombs() {
-  numberOfBombs = Math.ceil(columns * rows / 6)
+  numberOfBombs = Math.ceil((columns * rows) / 6)
   for (let i = 0; i < numberOfBombs; i++) {
     getRandomFreeField().hasbomb = true
   }
@@ -70,18 +71,21 @@ function getRandomFreeField() {
   const row = getRandomInt(rows)
   if (fields[row][column].hasbomb) {
     return getRandomFreeField()
-  } 
+  }
   return fields[row][column]
 }
 
 function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
+  return Math.floor(Math.random() * max)
 }
 
 function updateNeighbourBombs() {
   for (let row = 0; row < rows; row++) {
     for (let column = 0; column < columns; column++) {
-      fields[row][column].numberOfNeighboursBombs = countNeighboursBombs(row, column)
+      fields[row][column].numberOfNeighboursBombs = countNeighboursBombs(
+        row,
+        column
+      )
     }
   }
 }
@@ -97,7 +101,7 @@ function countNeighboursBombs(row, column) {
 
 function getNeighbours(row, column) {
   const neighbours = []
-  for (let i = row-1; i < row + 2; i++) {
+  for (let i = row - 1; i < row + 2; i++) {
     for (let j = column - 1; j < column + 2; j++) {
       if (i == row && j == column) continue
       if (i == rows || i < 0 || j == columns || j < 0) continue
@@ -108,7 +112,8 @@ function getNeighbours(row, column) {
 }
 
 export function toggleflag(row, column) {
-  fields[row][column].state = fields[row][column].state == 'flagged' ? 'covered' : 'flagged'
+  fields[row][column].state =
+    fields[row][column].state == 'flagged' ? 'covered' : 'flagged'
 }
 
 export function uncover(row, column) {
@@ -116,13 +121,15 @@ export function uncover(row, column) {
   if (fields[row][column].state == 'uncovered') return state
 
   fields[row][column].state = 'uncovered'
-  if (fields[row][column].numberOfNeighboursBombs == 0 && !fields[row][column].hasbomb) {
+  if (
+    fields[row][column].numberOfNeighboursBombs == 0 &&
+    !fields[row][column].hasbomb
+  ) {
     uncoverNeighbourFields(row, column)
   }
   if (fields[row][column].hasbomb) {
     state = 'lost'
-  }
-  else {
+  } else {
     uncoveredFields++
     if (uncoveredFields + numberOfBombs == rows * columns) {
       state = 'won'
@@ -132,9 +139,7 @@ export function uncover(row, column) {
 }
 
 function uncoverNeighbourFields(row, column) {
-  getNeighbours(row, column).forEach(f => {
+  getNeighbours(row, column).forEach((f) => {
     uncover(f.row, f.column)
   })
 }
-
-
